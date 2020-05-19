@@ -9,7 +9,7 @@
                 <div class="row">
                   <div class="col-sm">
                       <div class="card" style="width: 18rem;">
-                        <img class="card-img-top"> <%= image_tag "https://lh3.googleusercontent.com/proxy/XcqSG2bKhTWupKoy_g_MFe4-cWWLd_iLijnrwQH7OnKJ0WBfTQE0fbvdIGXfjgUBGXWa-mO67q2Wqa4m6HXtu6l5VhHdY9HBOq6bDK8aHd5K14PEtjfz" %> </img>
+                        <img class="card-img-top"><%= cl_image_tag(toilet.photo.key, width: 250, height: 200, crop: :fill) %></img>
                         <div class="card-body">
                           <h5 class="card-title">Toilet N° <%= toilet.id %></h5>
                           <p class="card-text">

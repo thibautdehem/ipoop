@@ -7,22 +7,26 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
+require 'open-uri'
 
 User.destroy_all
+Toilet.destroy_all
 
-user = User.new
+p user = User.new
 user.email = 'test@example.com'
 user.password = 'password'
 user.password_confirmation = 'password'
 user.save!
 
 10.times do
+  p file = URI.open('https://source.unsplash.com/random/400x300')
   p toilet = Toilet.new(
     description: Faker::Artist.name,
     address: Faker::Address.full_address,
     style: ["japanese", "french", "US"].sample,
-    user: user
+    user: user,
   )
+  toilet.photo.attach(io: file, filename: "#{Faker::Artist.name}.png", content_type: 'image/png')
   toilet.save!
 end
 
