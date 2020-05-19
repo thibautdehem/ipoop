@@ -1,50 +1,50 @@
 <div class="jumbotron">
   <div class="container ">
-    <h1 class="display-4"><%= @toilet.id %></h1>
+    <h1 class="display-4">Toilet N° <%= @toilet.id %></h1>
     <div class="container border">
       <div class="row">
         <div class="col-4 p-4">
-        <p>Style: <%= toilet.style %></p>
-        <p>Address: <%= toilet.address %></p>
-        <p>Description: <%= toilet.description %></p>
+        <p>Style: <%= @toilet.style %></p>
+        <p>Address: <%= @toilet.address %></p>
+        <p>Description: <%= @toilet.description %></p>
         </div>
         <div class="col-4 p-4">
-        <%= link_to 'Make a booking', new_toilet_booking_path(@toilet) %>
+        <%= image_tag "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_844,w_1500,x_0,y_0/dpr_2.0/c_limit,w_128/fl_lossy,q_auto/v1558473612/190521-Biba-toilet-heart-failure-tease_poizmv" %>
         </div>
-        <div class="col-1 p-4">
-        <%= link_to 'Edit', edit_toilet_path(@toilet), :class => "btn btn-primary"   %>
+        <div class="col-2 p-4">
+        <%= link_to 'Edit', edit_toilet_path(@toilet), :class => "btn btn-secondary"   %>
+        </div>
+        <div class="col-2 p-4">
+        <%= link_to 'Remove', toilet_path(@toilet),  method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-secondary"   %>
+        </div>
+        <div class="col-2 p-4">
+        <%= link_to 'Book that toilet', new_toilet_booking_path(@toilet), :class => "btn btn-lg btn-primary"   %>
         </div>
       </div>
+      <hr class="my-4">
+      <h4>How clean is Toilet N°<%= @toilet.id %></h4>
+      <div class="container">
+        <% @toilet.bookings.each do |booking| %>
+          <div class="container border my-2">
+              <div class="row">
+                <div class="col-4 p-4">
+                <%= booking.review %>
+                </div>
+                <div class="col-2 p-4">
+                <%= booking.rating %>
+                </div>
+                <div class="col-2 p-4">
+                <%= booking.user_id %>
+                </div>
+              </div>
+          </div>
+        <% end %>
       </div>
-  <hr class="my-4">
-
-<h4 class="display-4 "><%= @toilet.id %> reviews</h4>
-    <div class="container">
-      <% @toilet.bookings.each do |review| %>
-        <div class="container border my-2">
-            <div class="row">
-              <div class="col-4 p-4">
-              <%= booking.review %>
-              </div>
-              <div class="col-2 p-4">
-              <%= booking.rating %>
-              </div>
-              <div class="col-2 p-4">
-            #   <%= link_to "Remove",
-            #   review_path(booking),
-            #   method: :delete,
-            #   data: { confirm: "Are you sure?" } %>
-            #   </div>
-            </div>
-
-            
-        </div>
-      <% end %>
+      <hr class="my-4">
+      <%= link_to 'See all toilets', toilets_path %> |
     </div>
-    <div class="container">
-        
+  </div>
 </div>
-<hr class="my-4">
-    <%= link_to 'See all toilets', toilets_path %> |
-    </div>
-</div>
+
+
+
