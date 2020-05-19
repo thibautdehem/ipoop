@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'faker'
+
+5.times do
+  toilet = Toilet.new(
+    description: Faker::Artist.name,
+    address: Faker::Address.full_address,,
+    category: ["turk", "italian", "french"].sample
+  )
+  toilet.save!
+end
