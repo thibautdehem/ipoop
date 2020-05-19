@@ -2,13 +2,13 @@
 <div class="jumbotron">
 <div class="container">
       <div class="container">
-        <div class="row">
-          <div class="col-8">
+        <div class="row">  
+          <div class="col-8">  
           <% @toilets.each do |toilet| %>
             <div class="container">
                 <div class="row">
-                  <div class="col-sm">
-
+                  <div class="col-sm">  
+              
                       <div class="card" style="width: 18rem;">
                         <img class="card-img-top"> <%= image_tag "https://lh3.googleusercontent.com/proxy/XcqSG2bKhTWupKoy_g_MFe4-cWWLd_iLijnrwQH7OnKJ0WBfTQE0fbvdIGXfjgUBGXWa-mO67q2Wqa4m6HXtu6l5VhHdY9HBOq6bDK8aHd5K14PEtjfz" %> </img>
                         <div class="card-body">
@@ -27,7 +27,7 @@
               </div>
             <% end %>
           </div>
-          <div class="col-4">
+          <div class="col-4">  
                 <h2 class="my-3 text-center">Look for the closest toilet on the map!</h2>
                 <div class="d-flex justify-content-center">
                   <form class="form-inline" id="search-form">
@@ -39,13 +39,9 @@
             <div id="map" style="height: 300px; width: 600px">
             </div>
           </div>
-
+          
         </div>
       </div>
     <hr class="my-4">
   </div>
 </div>
-
-<% if policy(Toilet).create? %>
-  <%= link_to "New Toilet", new_toilet_path %>
-<% end %>
