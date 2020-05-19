@@ -1,6 +1,6 @@
 class Toilet < ApplicationRecord
-    has_many :users
-    belongs_to :booking
+    belongs_to :user
+    has_many :bookings
     validates :address, presence: true 
     validates :description, presence: true
     validates :style, presence: true
