@@ -47,6 +47,6 @@ class ToiletsController < ApplicationController
 
     def set_toilet
       @toilet = Toilet.find(params[:id])
-      authorize @toilet
+      #authorize @toilet
     end
 end
