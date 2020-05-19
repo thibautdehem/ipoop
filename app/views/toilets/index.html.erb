@@ -1,0 +1,47 @@
+<h1 class="display-4 ">Where to poop nearby</h1>
+<div class="jumbotron">
+<div class="container">
+      <div class="container">
+        <div class="row">  
+          <div class="col-8">  
+          <% @toilets.each do |toilet| %>
+            <div class="container">
+                <div class="row">
+                  <div class="col-sm">  
+              
+                      <div class="card" style="width: 18rem;">
+                        <img class="card-img-top"> <%= image_tag "https://lh3.googleusercontent.com/proxy/XcqSG2bKhTWupKoy_g_MFe4-cWWLd_iLijnrwQH7OnKJ0WBfTQE0fbvdIGXfjgUBGXWa-mO67q2Wqa4m6HXtu6l5VhHdY9HBOq6bDK8aHd5K14PEtjfz" %> </img>
+                        <div class="card-body">
+                          <h5 class="card-title">Toilet N° <%= toilet.id %></h5>
+                          <p class="card-text">
+                            <p>Style: <%= toilet.style %></p>
+                            <p>Address: <%= toilet.address %></p>
+                            <p>Address: <%= toilet.description %></p>
+                            <div class="btn btn-primary">
+                            <%= link_to 'Look that toilet', toilet_path(toilet), :class => "btn btn-primary" %>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-4">  
+                <h2 class="my-3 text-center">Look for the closest toilet on the map!</h2>
+                <div class="d-flex justify-content-center">
+                  <form class="form-inline" id="search-form">
+                    <input type="text" class="form-control" placeholder="Type adress" id="search-input">
+                    <input type="submit" class="btn btn-primary btn-sm mx-2">
+                  </form>
+                </div>
+              <div class="d-flex justify-content-center">
+            <div id="map" style="height: 300px; width: 600px">
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    <hr class="my-4">
+  </div>
+</div>

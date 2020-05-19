@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_141533) do
+ActiveRecord::Schema.define(version: 2020_05_18_162100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "toilet_id", null: false
+    t.integer "rating"
+    t.text "review"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["toilet_id"], name: "index_bookings_on_toilet_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
 
   create_table "toilets", force: :cascade do |t|
     t.string "address"
@@ -21,6 +32,8 @@ ActiveRecord::Schema.define(version: 2020_05_18_141533) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_toilets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,4 +48,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_141533) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "toilets"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "toilets", "users"
 end

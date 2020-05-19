@@ -1,4 +1,5 @@
 class ToiletsController < ApplicationController
+    skip_before_action :authenticate_user!
     def index
         @toilets = Toilet.all
     end
@@ -14,7 +15,7 @@ class ToiletsController < ApplicationController
     def create
         @toilet = Toilet.new(restaurant_params)
         if @toilet.save   # if the Model has a validates: presence
-            redirect_to toilet_path(@toilet)
+            redirect_to toilets_path
           else
             render :new
           end
