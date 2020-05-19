@@ -8,7 +8,6 @@
             <div class="container">
                 <div class="row">
                   <div class="col-sm">
-
                       <div class="card" style="width: 18rem;">
                         <img class="card-img-top"> <%= image_tag "https://lh3.googleusercontent.com/proxy/XcqSG2bKhTWupKoy_g_MFe4-cWWLd_iLijnrwQH7OnKJ0WBfTQE0fbvdIGXfjgUBGXWa-mO67q2Wqa4m6HXtu6l5VhHdY9HBOq6bDK8aHd5K14PEtjfz" %> </img>
                         <div class="card-body">
@@ -16,18 +15,12 @@
                           <p class="card-text">
                             <p>Style: <%= toilet.style %></p>
                             <p>Address: <%= toilet.address %></p>
-                            <p>Address: <%= toilet.description %></p>
+                            <p>Description: <%= toilet.description %></p>
                             <div class="btn btn-primary">
                             <%= link_to 'Look that toilet', toilet_path(toilet), :class => "btn btn-primary" %>
                             </div>
                           </div>
                       </div>
-                    <% if policy(toilet).edit?  %>
-                      <td><%= link_to 'Edit', toilet, edit_toilet_path(toilet) %></td>
-                    <% end %>
-                    <% if policy(toilet).destroy?  %>
-                        <td><%= link_to 'Destroy', toilet, method: :delete, data: { confirm: 'Are you sure you want to delete it?' } %></td>
-                    <% end %>
                   </div>
                 </div>
               </div>
@@ -45,6 +38,7 @@
             <div id="map" style="height: 300px; width: 600px">
             </div>
           </div>
+
         </div>
       </div>
     <hr class="my-4">
