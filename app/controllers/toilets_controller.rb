@@ -1,8 +1,9 @@
 class ToiletsController < ApplicationController
     skip_before_action :authenticate_user!
-    before_action : set_toilet, only: [:show, :edit, :update, :destroy]
+    before_action :set_toilet, only: [:show, :edit, :update, :destroy]
     def index
         @toilets = Toilet.all
+        @toilets = policy_scope(Toilet)
     end
 
     def show
