@@ -8,11 +8,21 @@
 
 require 'faker'
 
-5.times do
-  toilet = Toilet.new(
+User.destroy_all
+
+user = User.new
+user.email = 'test@example.com'
+user.password = 'password'
+user.password_confirmation = 'password'
+user.save!
+
+10.times do
+  p toilet = Toilet.new(
     description: Faker::Artist.name,
-    address: Faker::Address.full_address,,
-    category: ["turk", "italian", "french"].sample
+    address: Faker::Address.full_address,
+    style: ["japanese", "french", "US"].sample,
+    user: user
   )
   toilet.save!
 end
+
