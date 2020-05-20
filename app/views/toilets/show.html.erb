@@ -9,7 +9,7 @@
         <p>Description: <%= @toilet.description %></p>
         </div>
         <div class="col-4 p-4">
-          <% if toilet.photo.attached? %>
+          <% if @toilet.photo.attached? %>
             <%= cl_image_tag @toilet.photo.key, width: 300, height: 200, crop: :fill %>
           <% end %>
         </div>

@@ -18,17 +18,21 @@ user.password = 'password'
 user.password_confirmation = 'password'
 user.save!
 
+address = ["Rue Commandant Ponthier 2, 1040 Etterbeek" , "Rue Vilain XIIII 14, 1050 Ixelles", "Rue Désiré Seutin 30, 1440 Wauthier-Braine "]
+
 10.times do
   p file = URI.open("https://res.cloudinary.com/dehhegjqh/image/upload/v1589968191/toilets/toilet#{rand(1..11)}.jpg")
   toilet = Toilet.new(
     description: Faker::Quote.yoda,
-    address: Faker::Address.full_address,
+    address: address.sample,
     style: ["japanese", "french", "US"].sample,
     user: user,
   )
   toilet.photo.attach(io: file, filename: "#{Faker::Artist.name}.png", content_type: 'image/png')
   toilet.save!
 end
+
+
 
 # file = URI.open(cl_image_tag("toilets/toilet#{rand(1..11)}"))
 
