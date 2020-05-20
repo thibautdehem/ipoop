@@ -1,49 +1,46 @@
-<h1 class="display-4 ">Where to poop nearby</h1>
 <div class="jumbotron">
-<div class="container">
-      <div class="container">
-        <div class="row">
-          <div class="col-8">
-          <% @toilets.each do |toilet| %>
-            <div class="container">
-                <div class="row">
-                  <div class="col-sm">
-                      <div class="card" style="width: 18rem;">
-                        <img class="card-img-top"> <%= image_tag "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_844,w_1500,x_0,y_0/dpr_2.0/c_limit,w_128/fl_lossy,q_auto/v1558473612/190521-Biba-toilet-heart-failure-tease_poizmv" %> </img>
-                        <div class="card-body">
-                          <h5 class="card-title">Toilet N° <%= toilet.id %></h5>
-                          <p class="card-text">
-                            <p>Style: <%= toilet.style %></p>
-                            <p>Address: <%= toilet.address %></p>
-                            <p>Description: <%= toilet.description %></p>
-                            <div class="btn btn-primary">
-                            <%= link_to 'Look that toilet', toilet_path(toilet), :class => "btn btn-primary" %>
-                            </div>
+  <div class="container">
+    <h1 class="display-4 ">Where to poop nearby</h1>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <div class="container">
+                      <div class="card-group">
+                      <% @toilets.each do |toilet| %>
+                        <div class="card mx-2 my-2" style="width: 18rem;">
+                          <img class="card-img-top"> <%= image_tag "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_844,w_1500,x_0,y_0/dpr_2.0/c_limit,w_128/fl_lossy,q_auto/v1558473612/190521-Biba-toilet-heart-failure-tease_poizmv" %> </img>
+                          <div class="card-body">
+                            <h5 class="card-title">Toilet N° <%= toilet.id %></h5>
+                            <p class="card-text">
+                              <p>Style: <%= toilet.style %></p>
+                              <p>Address: <%= toilet.address %></p>
+                              <p>Description: <%= toilet.description %></p>
+                              <div class="btn btn-primary">
+                              <%= link_to 'Look', toilet_path(toilet), :class => "btn btn-primary" %>
+                              </div>
                           </div>
+                        </div>
+                      <% end %>
                       </div>
-                  </div>
-                </div>
               </div>
-            <% end %>
-          </div>
-          <div class="col-4">
-                <h2 class="my-3 text-center">Look for the closest toilet on the map!</h2>
+            </div>
+            <div class="col-4">
+                  <h2 class="my-3 text-center">Look for the closest toilet on the map!</h2>
+                  <div class="d-flex justify-content-center">
+                    <form class="form-inline" id="search-form">
+                      <input type="text" class="form-control" placeholder="Type adress" id="search-input">
+                      <input type="submit" class="btn btn-primary btn-sm mx-2">
+                    </form>
+                  </div>
                 <div class="d-flex justify-content-center">
-                  <form class="form-inline" id="search-form">
-                    <input type="text" class="form-control" placeholder="Type adress" id="search-input">
-                    <input type="submit" class="btn btn-primary btn-sm mx-2">
-                  </form>
-                </div>
-              <div class="d-flex justify-content-center">
-            <div id="map" style="height: 300px; width: 600px">
+              <div id="map" style="height: 300px; width: 600px">
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    <hr class="my-4">
-  </div>
-</div>
-
+      <hr class="my-4">
+    </div>
 <% if policy(Toilet).create? %>
   <%= link_to "New Toilet", new_toilet_path %>
 <% end %>
+</div>
