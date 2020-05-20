@@ -1,4 +1,26 @@
 <div class="jumbotron">
+  <div class="container shadow p-3 mb-5 bg-light rounded">
+  <form>
+    <div class="form-group">
+      <h1 class="display-4">Booking information</h1>
+      <%= simple_form_for [ @toilet, @booking ] do |f| %>
+       <%= f.input :arrivaltime, label: 'Arrival time', :collection => ['2 minutes', '5 minutes', '10 minutes', '15 minutes', '20 minutes', '30 minutes' ] %>
+    </div>
+    <div class="form-group">
+      <%= f.input :pooptype, label: 'Poop type', :collection => ['Type 1', 'Type 2', 'Prefer not to say!'] %>
+    </div>
+    <%= f.button :submit, class: "btn-primary" %>
+    <% end %>
+    </div>
+</form>
+<hr class="my-2">
+  <p> * <strong>type 1</strong> = to go number one,
+    <strong>type 2</strong> = to go number two </p>
+</div>
+</div>
+
+
+<div class="jumbotron">
     <div class="container">
         <h1 class="display-4">Enjoy your poop!</h1>
         <div class="col-4 p-4">
