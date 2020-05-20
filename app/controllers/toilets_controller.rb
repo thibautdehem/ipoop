@@ -4,6 +4,13 @@ class ToiletsController < ApplicationController
     def index
         @toilets = Toilet.all
         @toilets = policy_scope(Toilet)
+        @toiletsgeo = Toilet.geocoded # returns toilets with coordinates
+        @markers = @toiletsgeo.map do |toilet|
+          {
+            lat: toilet.latitude,
+            lng: toilet.longitude
+          }
+          end
     end
 
     def show
@@ -15,15 +22,15 @@ class ToiletsController < ApplicationController
     end
 
     def create
-        @toilet = Toilet.new(toilet_params)
-        @toilet.user = current_user
-        authorize @toilet
-        if @toilet.save   # if the Model has a validates: presence
+      @toilet = Toilet.new(toilet_params)
+      @toilet.user = current_user
+      authorize @toilet
+          if @toilet.save   # if the Model has a validates: presence
             redirect_to toilets_path
           else
             render :new
           end
-    end
+      end
 
     def edit
     end
