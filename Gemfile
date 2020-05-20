@@ -7,6 +7,8 @@ gem 'pundit'
 gem 'devise'
 
 gem 'faker'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'cloudinary', '~> 1.12.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3'
