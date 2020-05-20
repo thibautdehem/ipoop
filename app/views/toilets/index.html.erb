@@ -6,10 +6,9 @@
           <div class="col-8">
           <% @toilets.each do |toilet| %>
             <div class="container">
-                <div class="row">
-                  <div class="col-sm">
-                      <div class="card" style="width: 18rem;">
-                        <img class="card-img-top"><%= cl_image_tag(toilet.photo.key, width: 250, height: 200, crop: :fill) %></img> 
+                  <div class="card-group">
+                      <div class="card px-2 py-2" style="width: 18rem;">
+                        <img class="card-img-top"><%= cl_image_tag(toilet.photo.key, width: 250, height: 200, crop: :fill) %></img>
                         <div class="card-body">
                           <h5 class="card-title">Toilet N° <%= toilet.id %></h5>
                           <p class="card-text">
@@ -20,9 +19,8 @@
                             <%= link_to 'Look that toilet', toilet_path(toilet), :class => "btn btn-primary" %>
                             </div>
                           </div>
-                      </div>
+                    </div>
                   </div>
-                </div>
               </div>
             <% end %>
           </div>
