@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
     private
 
     def booking_params
-      params.require(:booking).permit(:rating, :review, :datetime)
+      params.require(:booking).permit(:rating, :review, :arrivaltime, :pooptype)
     end
 
       def set_toilet
