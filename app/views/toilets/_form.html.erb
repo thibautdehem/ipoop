@@ -1,7 +1,7 @@
 <div class="jumbotron">
     <div class="container">
         <h1 class="display-4">New Toilet</h1>
-        
+
         <%= simple_form_for @toilet do |f| %>
           <div class="row">
                 <div class="col p-4">
@@ -14,7 +14,10 @@
               <div class="col p-4">
                 <%= f.input :style, label: 'Style', error: 'Category is mandatory, please specify one', collection: ["japanese", "french", "US"] %>
               </div>
-              
+              <div class="col p-4">
+               <%= f.input :photo, as: :file %>
+              </div>
+
               <%= f.button :submit, class: "btn-primary" %>
             </div>
         <% end %>
