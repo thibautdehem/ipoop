@@ -4,6 +4,14 @@ class ToiletsController < ApplicationController
     def index
         @toilets = Toilet.all
         @toilets = policy_scope(Toilet)
+        @toilets = Toilet.geocoded # returns flats with coordinates
+
+         @markers = @toilets.map do |toilet|
+          {
+            lat: toilet.latitude,
+            lng: toilet.longitude
+          }
+          end
     end
 
     def show
@@ -22,7 +30,7 @@ class ToiletsController < ApplicationController
             redirect_to toilets_path
           else
             render :new
-          end
+        end
     end
 
     def edit
