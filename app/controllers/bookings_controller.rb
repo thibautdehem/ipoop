@@ -16,9 +16,10 @@ class BookingsController < ApplicationController
     def create
         @booking = Booking.new(booking_params)
         @toilet = Toilet.find(params[:toilet_id])
+        @booking.user = current_user
         authorize @booking
         @booking.toilet = @toilet
-        if @booking.save   # if the Model has a validates: presence
+        if @booking.save!   # if the Model has a validates: presence
             redirect_to toilet_path(@toilet)
           else
             render :new
@@ -33,7 +34,7 @@ class BookingsController < ApplicationController
     private
 
     def booking_params
-      params.require(:booking).permit(:rating, :review, :arrivaltime, :pooptype)
+      params.require(:booking).permit(:arrivaltime, :pooptype)
     end
 
       def set_toilet
