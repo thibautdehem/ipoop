@@ -11,7 +11,6 @@ class ToiletsController < ApplicationController
             lng: toilet.longitude,
             infoWindow: render_to_string(partial: "info_window", locals: { toilet: toilet }),
             image_url: helpers.asset_url('logo.png')
-
           }
           end
     end
@@ -21,7 +20,8 @@ class ToiletsController < ApplicationController
           {
             lat: @toilet.latitude,
             lng: @toilet.longitude,
-            infoWindow: render_to_string(partial: "info_window", locals: { toilet: @toilet })
+            infoWindow: render_to_string(partial: "info_window", locals: { toilet: @toilet }),
+            image_url: helpers.asset_url('logo.png')
           }
     end
 

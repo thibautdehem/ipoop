@@ -3,7 +3,7 @@
   <div class="container">
     <div class="container">
       <div class="row">
-        <div class="col-8">
+        <div class="col-7">
           <% @toilets.each do |toilet| %>
           <div class="card mb-3" style="max-width: 700px;">
             <div class="row no-gutters">
@@ -12,7 +12,7 @@
                   <%= cl_image_tag toilet.photo.key, width: 180, height: 200, crop: :fill %>
                 <% end %>
               </div>
-              <div class="col-md-8">
+              <div class="col-md-4">
                 <div class="card-body">
                   <h5 class="card-title">Toilet N° <%= toilet.id %></h5>
                   <p class="card-text">Style: <%= toilet.style %></p>
@@ -26,13 +26,22 @@
           </div>
           <% end %>
         </div>
-        <div class="col-4">
-          <h1 class="my-3 text-center">Where to poop nearby</h1>
+        <div class="col-5">
+          <h1 class="my-3 text-center">Where to poop nearby?</h1>
           <div class="d-flex justify-content-center">
-            <form class="form-inline" id="search-form">
-              <input type="text" class="form-control" placeholder="Type adress" id="search-input">
-              <input type="submit" class="btn btn-primary btn-sm m-2">
-            </form>
+
+          <form>
+            <div class="form-row align-items-center">
+              <div class="col-auto my-1">
+                <label class="sr-only" for="inlineFormInputAddress">Address</label>
+                <input type="search" class="form-control" id="toilet_address" placeholder="Type your address here">
+              </div>
+              <div class="col-1 my-1">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+
           </div>
           <div class="d-flex justify-content-center">
                <div id="map" class="py-2"
@@ -43,10 +52,11 @@
             </div>
           </div>
       </div>
+        <% if policy(Toilet).create? %>
+        <%= link_to "New Toilet", new_toilet_path %>
+        <% end %>
       <hr class="my-4">
     </div>
   </div>
 
-  <% if policy(Toilet).create? %>
-  <%= link_to "New Toilet", new_toilet_path %>
-  <% end %>
+
