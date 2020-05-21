@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
+
     <title>Ipoop</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -15,12 +14,8 @@
   </head>
 
   <body>
-
+<%= render 'shared/navbar' %>
+<%= render 'shared/flashes' %>
         <%= yield %>
- <%= render 'shared/flashes' %>
-
-
-<!-- <p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p> -->
   </body>
 </html>

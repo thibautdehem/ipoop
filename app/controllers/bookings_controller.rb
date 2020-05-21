@@ -34,7 +34,7 @@ class BookingsController < ApplicationController
         authorize @booking
         @booking.toilet = @toilet
         if @booking.save!   # if the Model has a validates: presence
-            redirect_to toilet_bookings_path(@toilet, @booking)
+            redirect_to toilet_booking_path(@toilet, @booking)
           else
             render :new
           end

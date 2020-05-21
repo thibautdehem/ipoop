@@ -7,6 +7,7 @@
       <div class="row">
         <div class="col-8 p-4">
         <p>Style: <%= @toilet.style %></p>
+        <p>Description: <%= @toilet.address %></p>
         <p>Description: <%= @toilet.description %></p>
         <% if @toilet.photo.attached? %>
             <%= cl_image_tag @toilet.photo.key, width: 300, height: 200, crop: :fill %>
@@ -22,19 +23,16 @@
       </div>
 
       <hr class="my-4">
-      <h4>How clean is Toilet N°<%= @toilet.id %></h4>
+      <h4> Previous usage of Toilet N°<%= @toilet.id %></h4>
       <div class="container">
         <% @toilet.bookings.each do |booking| %>
           <div class="container border my-2">
               <div class="row">
                 <div class="col-4 p-4">
-                <%= booking.review %>
+                <%= booking.user.email %>
                 </div>
                 <div class="col-2 p-4">
-                <%= booking.rating %>
-                </div>
-                <div class="col-2 p-4">
-                <%= booking.user_id %>
+                <%= booking.pooptype %>
                 </div>
               </div>
           </div>

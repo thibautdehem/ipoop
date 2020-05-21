@@ -62,10 +62,10 @@ const fitMapToMarker = (map, marker) => {
 const initMapbox = () => {
   if (mapElement) {
     const map = buildMap();
+    console.log(mapElement.dataset.markers);
+    console.log(mapElement.dataset.marker);
     const markers = mapElement.dataset.markers;
     const marker = mapElement.dataset.marker;
-    console.log(markers);
-    console.log(marker);
     if (typeof markers !== 'undefined' && markers) {
       const jsonmarkers = JSON.parse(markers);
       addMarkersToMap(map, jsonmarkers);

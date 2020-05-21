@@ -2,13 +2,9 @@ class ToiletsController < ApplicationController
     skip_before_action :authenticate_user!, only: :index
     before_action :set_toilet, only: [:show, :edit, :update, :destroy]
     def index
-
-
-
       if params[:query].present?
         @toilets = policy_scope(Toilet).where(style: params[:query])
       else
-
         @toilets = policy_scope(Toilet)
       end
         @markers = @toilets.map do |toilet|
