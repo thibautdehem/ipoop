@@ -6,14 +6,14 @@
         </div>
         <hr class="my-4">
         <h2>Happy? Leave a poop review</h1>
-        <%= simple_form_for [ @toilet, @booking ] do |f| %>
+        <%= simple_form_for([ @toilet, @booking ]) do |f| %>
           <div class="row">
               <div class="col p-4">
                 <%= f.input :review, label: 'Review', error: 'Review is mandatory, please specify one' %>
               </div>
               </div>
               <div class="col p-4">
-                <%=# f.input :rating, label: 'Rating', as: :numeric, error: 'Rating is mandatory, please specify one' %>
+                <%= f.input :rating, label: 'Rating', as: :numeric, error: 'Rating is mandatory, please specify one' %>
               </div>
               <%= f.button :submit, label: 'Leave review', class: "btn-primary" %>
             </div>
