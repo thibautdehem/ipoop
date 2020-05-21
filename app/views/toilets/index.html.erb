@@ -2,7 +2,17 @@
 <div class="jumbotron">
   <div class="container">
     <div class="container">
-      <div class="row">
+      <div>
+      <%= form_tag toilets_path, method: :get do %>
+      <%= select_tag :query, options_for_select(["japanese", "french", "US"]),
+      :prompt => "which style do you fancy?",
+      :selected => params[:query],
+      class: "form-control"
+        %>
+        </div>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+        <% end %>
+        <div class="row">
         <div class="col-8">
           <% @toilets.each do |toilet| %>
           <div class="card mb-3" style="max-width: 700px;">
