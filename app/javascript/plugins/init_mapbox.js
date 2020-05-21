@@ -55,7 +55,7 @@ const fitMapToMarkers = (map, markers) => {
 
 const fitMapToMarker = (map, marker) => {
   const bounds = new mapboxgl.LngLatBounds();
-  bounds.extend([ marker.lng, marker.lat ]); //???
+  bounds.extend([ marker.lng, marker.lat ]);
   map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
 };
 
@@ -66,8 +66,8 @@ const initMapbox = () => {
     const marker = mapElement.dataset.marker;
     console.log(markers);
     console.log(marker);
-    if (typeof jsonmarkers !== 'undefined' && jsonmarkers) {
-      const jsonmarkers = JSON.parse(jsonmarkers);
+    if (typeof markers !== 'undefined' && markers) {
+      const jsonmarkers = JSON.parse(markers);
       addMarkersToMap(map, jsonmarkers);
       fitMapToMarkers(map, jsonmarkers);
     }

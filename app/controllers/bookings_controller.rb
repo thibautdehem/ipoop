@@ -9,8 +9,12 @@ class BookingsController < ApplicationController
     # end
 
     # def myindex
-    #   @bookings = Booking.select(params[:id])
+    #   @bookings = Booking.select(params[:user_id])
     #   authorize @booking
+    # end
+
+    # def myindex
+    #   @mybookings = Booking.where(user_id: current_user)
     # end
 
     def show
