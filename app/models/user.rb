@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :toilets, dependent: :destroy
   has_many :bookings
+include Gravtastic
+gravtastic
 end

@@ -3,9 +3,9 @@ class ToiletsController < ApplicationController
     before_action :set_toilet, only: [:show, :edit, :update, :destroy]
     def index
       if params[:query].present?
-        @toilets = policy_scope(Toilet).where(style: params[:query])
+        @toilets = policy_scope(Toilet.paginate(page: params[:page], per_page: 3)).where(style: params[:query])
       else
-        @toilets = policy_scope(Toilet)
+        @toilets = policy_scope(Toilet.paginate(page: params[:page], per_page: 3))
       end
         @markers = @toilets.map do |toilet|
           {

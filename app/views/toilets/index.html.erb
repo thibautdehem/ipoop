@@ -1,12 +1,33 @@
-<div class="jumbotron">
-  <div class="container">
-    <div class="container">
+
+
+
       <div class="row">
-        <div class="col-7">
-          <h5 class="search-text">Which toilet style do you fancy?</h5>
+          <div class="col-md-5">
+            <h1 class="my-3 text-center">Where to poop nearby?</h1>
+            <form>
+              <div class="form-row">
+                <div class="col-4 my-1">
+                  <label class="sr-only" for="inlineFormInputAddress">Address</label>
+                  <input type="search" class="form-control" id="toilet_address" placeholder="Type your address here">
+                </div>
+                <div class="col-1 my-1">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </form>
+            <div class="d-flex justify-content-center">
+             <div id="map" class="py-2 mx-2 my-2"
+             style="width: 100%; height: 600px;"
+             data-markers="<%= @markers.to_json %>"
+             data-mapbox-api-key="<%= ENV['MAPBOX_TOKEN'] %>"></div>
+           </div>
+         </div>
+        <div class="col-md-7">
+          <h5 class="search-text">Filter</h5>
+
           <%= form_tag toilets_path, class: 'search-style', method: :get do %>
           <%= select_tag :query, options_for_select(["japanese", "french", "US"]),
-          :prompt => '🔎',
+          :prompt => 'All',
           :selected => params[:query],
           class: "form-control"
             %>
@@ -15,12 +36,12 @@
             <% @toilets.each do |toilet| %>
             <div class="card mb-3" style="max-width: 700px;">
               <div class="row no-gutters">
-                <div class="col-md-4">
+                <div class="col">
                   <% if toilet.photo.attached? %>
                   <%= cl_image_tag toilet.photo.key, width: 180, height: 200, crop: :fill %>
                   <% end %>
                 </div>
-                <div class="col-md-8">
+                <div class="col">
                   <div class="card-body">
                     <h5 class="card-title">Toilet N° <%= toilet.id %></h5>
                     <p class="card-text">Style: <%= toilet.style %></p>
@@ -32,33 +53,11 @@
                 </div>
               </div>
             </div>
-          <% end %>
-        </div>
-        <div class="col-5">
-          <h1 class="my-3 text-center">Where to poop nearby?</h1>
-          <form>
-            <div class="form-row">
-              <div class="col-4 my-1">
-                <label class="sr-only" for="inlineFormInputAddress">Address</label>
-                <input type="search" class="form-control" id="toilet_address" placeholder="Type your address here">
-              </div>
-              <div class="col-1 my-1">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </div>
-          </form>
-          <div class="d-flex justify-content-center">
-               <div id="map" class="py-2"
-                style="width: 100%; height: 600px;"
-                data-markers="<%= @markers.to_json %>"
-                data-mapbox-api-key="<%= ENV['MAPBOX_TOKEN'] %>"></div>
-              </div>
-            </div>
+            <% end %>
+       <%= will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
           </div>
-      </div>
-        <% if policy(Toilet).create? %>
-        <%= link_to "New Toilet", new_toilet_path %>
-        <% end %>
-      <hr class="my-4">
-    </div>
-  </div>
+       </div>
+
+     <hr class="my-4">
+
+

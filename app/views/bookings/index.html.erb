@@ -1,8 +1,8 @@
 <div class="jumbotron">
-<% n = 0  %>
-<% @bookings.each do |i| n = n + 1 end %>
- <h1 class="display-4"> Congrats you have had <%= n %> bookings!</h1>
-  <% @bookings.each do |booking| %>
+<% @bookings.each do |booking| %>
+<% if booking.toilet.user == current_user %>
+    <% n = 0 %>
+    <% n = n + 1 %>
     <div class="card mb-3" style="max-width: 700px;">
       <div class="row mx-2 my-2">
          <div class="col-8">
@@ -17,6 +17,8 @@
           </div>
       </div>
     </div>
+    <% else %>
+  <% end %>
+ <h1 class="display-4"> You earned <%= n %>  🧻 !</h1>
   <% end %>
 </div>
-
