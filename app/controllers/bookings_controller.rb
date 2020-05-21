@@ -2,12 +2,10 @@ class BookingsController < ApplicationController
  before_action :set_booking, only: [:show, :destroy, :edit, :update]
  def index
         @bookings = policy_scope(Booking)
-
     end
 
     def show
       @booking = @toilet.bookings.new
-
     end
 
     def new
@@ -23,10 +21,14 @@ class BookingsController < ApplicationController
         authorize @booking
         @booking.toilet = @toilet
         if @booking.save!   # if the Model has a validates: presence
+
             redirect_to toilet_bookings_path(@booking)
           else
             render :new
           end
+    end
+
+    def show
     end
 
     def edit
