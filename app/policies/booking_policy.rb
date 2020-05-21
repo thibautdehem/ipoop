@@ -3,22 +3,26 @@ class BookingPolicy < ApplicationPolicy
     def resolve
       scope.where( user: user)
     end
-  end
-  def create?
-    true
-  end
+    end
+    def create?
+      true
+    end
 
-  def show?
-    true
-  end
+    def show?
+      true
+    end
 
-  def update?
-    record.user == user
-    # - record: the restaurant passed to the `authorize` method in controller
-    # - user:   the `current_user` signed in with Devise.
-  end
+    # def myindex?
+    #   record.user == user
+    # end
 
-  def destroy?
-    record.user == user
-  end
+    def update?
+      record.user == user
+      # - record: the restaurant passed to the `authorize` method in controller
+      # - user:   the `current_user` signed in with Devise.
+    end
+
+    def destroy?
+      record.user == user
+    end
 end

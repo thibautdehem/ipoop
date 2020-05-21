@@ -1,5 +1,7 @@
 <div class="jumbotron">
- <h1 class="display-4"> Your bookings:</h1>
+<% n = 0  %>
+<% @bookings.each do |i| n = n + 1 end %>
+ <h1 class="display-4"> Congrats you have had <%= n %> bookings!</h1>
   <% @bookings.each do |booking| %>
     <div class="card mb-3" style="max-width: 700px;">
       <div class="row mx-2 my-2">
