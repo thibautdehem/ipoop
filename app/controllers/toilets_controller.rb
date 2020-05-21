@@ -2,7 +2,7 @@ class ToiletsController < ApplicationController
     skip_before_action :authenticate_user!, only: :index
     before_action :set_toilet, only: [:show, :edit, :update, :destroy]
     def index
-        @toilets = Toilet.all
+        #@toilets = Toilet.all
         @toilets = policy_scope(Toilet)
         @toiletsgeo = Toilet.geocoded # returns toilets with coordinates
         @markers = @toiletsgeo.map do |toilet|
