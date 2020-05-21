@@ -8,12 +8,19 @@ class ToiletsController < ApplicationController
         @markers = @toiletsgeo.map do |toilet|
           {
             lat: toilet.latitude,
-            lng: toilet.longitude
+            lng: toilet.longitude,
+            infoWindow: render_to_string(partial: "info_window", locals: { toilet: toilet })
           }
           end
     end
 
     def show
+      # @marker =
+      #     {
+      #       lat: @toilet.latitude,
+      #       lng: @toilet.longitude,
+      #       infoWindow: render_to_string(partial: "info_window", locals: { toilet: @toilet })
+      #     }
     end
 
     def new
