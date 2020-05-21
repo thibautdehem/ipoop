@@ -11,18 +11,20 @@ class ToiletsController < ApplicationController
           {
             lat: toilet.latitude,
             lng: toilet.longitude,
-            infoWindow: render_to_string(partial: "info_window", locals: { toilet: toilet })
+            infoWindow: render_to_string(partial: "info_window", locals: { toilet: toilet }),
+            image_url: helpers.asset_url('logo.png')
           }
         end
       end
 
     def show
-      # @marker =
-      #     {
-      #       lat: @toilet.latitude,
-      #       lng: @toilet.longitude,
-      #       infoWindow: render_to_string(partial: "info_window", locals: { toilet: @toilet })
-      #     }
+      @marker =
+          {
+            lat: @toilet.latitude,
+            lng: @toilet.longitude,
+            infoWindow: render_to_string(partial: "info_window", locals: { toilet: @toilet }),
+            image_url: helpers.asset_url('logo.png')
+          }
     end
 
     def new
@@ -46,7 +48,6 @@ class ToiletsController < ApplicationController
 
     def update
         @toilet.update(toilet_params)
-        # Will raise ActiveModel::ForbiddenAttributesError
         redirect_to toilets_path
     end
 

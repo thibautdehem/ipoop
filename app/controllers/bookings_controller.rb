@@ -4,9 +4,6 @@ class BookingsController < ApplicationController
         @bookings = Booking.all
     end
 
-    def show
-    end
-
     def new
         @toilet = Toilet.find(params[:toilet_id])
         @booking = Booking.new # needed to instantiate the form_for
@@ -20,10 +17,13 @@ class BookingsController < ApplicationController
         authorize @booking
         @booking.toilet = @toilet
         if @booking.save!   # if the Model has a validates: presence
-            redirect_to edit_toilet_booking_path(@booking) # /toilets/:toilet_id/bookings/:id/edit
+            redirect_to toilet_booking_path(@toilet, @booking) # /toilets/:toilet_id/bookings/:id/edit
           else
             render :new
           end
+    end
+
+    def show
     end
 
     def edit

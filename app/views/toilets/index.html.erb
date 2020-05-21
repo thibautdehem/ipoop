@@ -3,7 +3,7 @@
   <div class="container">
     <div class="container">
       <div class="row">
-        <div class="col-8">
+        <div class="col-7">
           <h5 class="search-text">Which toilet style do you fancy?</h5>
           <%= form_tag toilets_path, class: 'search-style', method: :get do %>
           <%= select_tag :query, options_for_select(["japanese", "french", "US"]),
@@ -50,19 +50,21 @@
                 </div>
               </form>
             </div>
-            <div class="d-flex justify-content-center">
-             <div id="map" class="py-2"
-             style="width: 100%; height: 600px;"
-             data-markers="<%= @markers.to_json %>"
-             data-mapbox-api-key="<%= ENV['MAPBOX_TOKEN'] %>"></div>
-           </div>
-         </div>
-       </div>
-     </div>
-     <hr class="my-4">
-   </div>
- </div>
+          </form>
 
- <% if policy(Toilet).create? %>
- <%= link_to "New Toilet", new_toilet_path %>
- <% end %>
+          </div>
+          <div class="d-flex justify-content-center">
+               <div id="map" class="py-2"
+                style="width: 100%; height: 600px;"
+                data-markers="<%= @markers.to_json %>"
+                data-mapbox-api-key="<%= ENV['MAPBOX_TOKEN'] %>"></div>
+              </div>
+            </div>
+          </div>
+      </div>
+        <% if policy(Toilet).create? %>
+        <%= link_to "New Toilet", new_toilet_path %>
+        <% end %>
+      <hr class="my-4">
+    </div>
+  </div>
