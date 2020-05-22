@@ -25,6 +25,7 @@ class ToiletsController < ApplicationController
             infoWindow: render_to_string(partial: "info_window", locals: { toilet: @toilet }),
             image_url: helpers.asset_url('logo.png')
           }
+      @review = Review.new
     end
 
     def new
