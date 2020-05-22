@@ -1,0 +1,18 @@
+<div class="jumbotron">
+ <h1 class="display-4"> Your bookings:</h1>
+  <% @bookings.each do |booking| %>
+    <div class="card mb-3" style="max-width: 700px;">
+      <div class="row no-gutters">
+         <div class="col-md-4">
+            <h5 class="card-title">Toilet N°   <%= booking.toilet_id %></h5>
+            <p class="card-text">Arrival time:    <%= booking.arrivaltime %></p>
+            <p class="card-text">What is it for?  <%= booking.pooptype%></p>
+            <p class="card-text">Created at:   <%= booking.created_at %></p>
+            <p><%= link_to 'Edit the booking', new_toilet_booking_path(booking), :class => "btn btn-primary" %></p>
+            <p><%= link_to 'Delete the booking', booking, :class => "btn btn-primary", method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
