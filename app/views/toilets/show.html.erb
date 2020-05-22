@@ -56,6 +56,26 @@
           </div>
         <% end %>
       </div>
+      <div class="container">
+        <%= simple_form_for [@toilet, @review] do |f|  %>
+          <%= f.input :content, label: 'Write a review' %>
+          <%= f.submit class: "btn-primary" %>
+          <% end %>
+        <% if @toilet.reviews.any? %>
+          <% @toilet.reviews.each do |review| %>
+            <div class="container border my-2">
+                <div class="row">
+                  <div class="col-6 p-4">
+                  <%= review.content %>
+                  </div>
+                </div>
+            </div>
+          <% end %>
+        <% else %>
+        <%= 'No rviews yet' %>
+        <% end %>
+      </div>
+
       <hr class="my-4">
       <%= link_to 'See all toilets', toilets_path %>
     </div>

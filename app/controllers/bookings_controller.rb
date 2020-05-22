@@ -21,6 +21,8 @@ class BookingsController < ApplicationController
         @booking = @toilet.bookings.new
     end
 
+
+
     def new
         @toilet = Toilet.find(params[:toilet_id])
         @booking = Booking.new # needed to instantiate the form_for
