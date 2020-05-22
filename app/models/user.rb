@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :toilets, dependent: :destroy
   has_many :bookings
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 include Gravtastic
 gravtastic
 end
