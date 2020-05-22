@@ -2,20 +2,8 @@ class BookingsController < ApplicationController
  before_action :set_booking, only: [:show, :destroy, :edit, :update]
     def index
         @bookings = policy_scope(Booking)
+        #@toilet = Toilet.find(params[:toilet_id])
     end
-
-    # def myindex
-    #     @mybookings = policy_scope(Booking)
-    # end
-
-    # def myindex
-    #   @bookings = Booking.select(params[:user_id])
-    #   authorize @booking
-    # end
-
-    # def myindex
-    #   @mybookings = Booking.where(user_id: current_user)
-    # end
 
     def show
         @booking = @toilet.bookings.new
@@ -55,7 +43,7 @@ class BookingsController < ApplicationController
 
     def destroy
         @booking.destroy
-        redirect_to toilet_path(@toilet)
+        redirect_to bookings_path(@toilet)
     end
 
     private

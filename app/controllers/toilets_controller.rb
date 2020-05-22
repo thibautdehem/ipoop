@@ -45,6 +45,7 @@ class ToiletsController < ApplicationController
       end
 
     def edit
+      @toilets = policy_scope(Toilet)
     end
 
     def update
