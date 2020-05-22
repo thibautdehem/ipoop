@@ -76,8 +76,8 @@ const initMapbox = () => {
       addMarkerToMap(map, jsonmarker);
       fitMapToMarker(map, jsonmarker);
     }
-  // map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-  //                                     mapboxgl: mapboxgl }));
+  map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+                                      mapboxgl: mapboxgl }));
   }
 };
 

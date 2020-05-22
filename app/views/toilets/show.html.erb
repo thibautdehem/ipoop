@@ -72,7 +72,7 @@
                 </div>
           <% end %>
         <% else %>
-        <%= 'No rviews yet' %>
+        <%= '--' %>
         <% end %>
         </div>
       </div>
@@ -81,9 +81,7 @@
           <%= f.input :content, label: 'Write a review' %>
           <%= f.submit class: "btn-primary" %>
           <% end %>
-
       <hr class="my-4">
-      <%= link_to 'See all toilets', toilets_path %>
     </div>
   </div>
 </div>
