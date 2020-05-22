@@ -2,25 +2,29 @@ class ToiletsController < ApplicationController
     skip_before_action :authenticate_user!, only: :index
     before_action :set_toilet, only: [:show, :edit, :update, :destroy]
     def index
-        @toilets = Toilet.all
-        @toilets = policy_scope(Toilet)
-        @toiletsgeo = Toilet.geocoded # returns toilets with coordinates
-        @markers = @toiletsgeo.map do |toilet|
+      if params[:query].present?
+        @toilets = policy_scope(Toilet.paginate(page: params[:page], per_page: 3)).where(style: params[:query])
+      else
+        @toilets = policy_scope(Toilet.paginate(page: params[:page], per_page: 3))
+      end
+        @markers = @toilets.map do |toilet|
           {
             lat: toilet.latitude,
             lng: toilet.longitude,
-            infoWindow: render_to_string(partial: "info_window", locals: { toilet: toilet })
+            infoWindow: render_to_string(partial: "info_window", locals: { toilet: toilet }),
+            image_url: helpers.asset_url('logo.png')
           }
-          end
-    end
+        end
+      end
 
     def show
-      # @marker =
-      #     {
-      #       lat: @toilet.latitude,
-      #       lng: @toilet.longitude,
-      #       infoWindow: render_to_string(partial: "info_window", locals: { toilet: @toilet })
-      #     }
+      @marker =
+          {
+            lat: @toilet.latitude,
+            lng: @toilet.longitude,
+            infoWindow: render_to_string(partial: "info_window", locals: { toilet: @toilet }),
+            image_url: helpers.asset_url('logo.png')
+          }
     end
 
     def new
@@ -44,7 +48,6 @@ class ToiletsController < ApplicationController
 
     def update
         @toilet.update(toilet_params)
-        # Will raise ActiveModel::ForbiddenAttributesError
         redirect_to toilets_path
     end
 

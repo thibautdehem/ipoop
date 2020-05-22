@@ -1,10 +1,24 @@
 class BookingsController < ApplicationController
  before_action :set_booking, only: [:show, :destroy, :edit, :update]
- def index
-        @bookings = Booking.all
+    def index
+        @bookings = policy_scope(Booking)
     end
 
+    # def myindex
+    #     @mybookings = policy_scope(Booking)
+    # end
+
+    # def myindex
+    #   @bookings = Booking.select(params[:user_id])
+    #   authorize @booking
+    # end
+
+    # def myindex
+    #   @mybookings = Booking.where(user_id: current_user)
+    # end
+
     def show
+        @booking = @toilet.bookings.new
     end
 
     def new
@@ -20,10 +34,13 @@ class BookingsController < ApplicationController
         authorize @booking
         @booking.toilet = @toilet
         if @booking.save!   # if the Model has a validates: presence
-            redirect_to edit_toilet_booking_path(@booking) # /toilets/:toilet_id/bookings/:id/edit
+            redirect_to toilet_booking_path(@toilet, @booking)
           else
             render :new
           end
+    end
+
+    def show
     end
 
     def edit
@@ -45,7 +62,7 @@ class BookingsController < ApplicationController
       params.require(:booking).permit(:arrivaltime, :pooptype, :review, :rating)
     end
 
-      def set_booking
+    def set_booking
       @booking = Booking.find(params[:id])
       authorize @booking
     end
