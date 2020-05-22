@@ -21,4 +21,8 @@ class ToiletPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def edit?
+    scope.where( user: user)
+  end
 end
