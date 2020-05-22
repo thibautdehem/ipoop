@@ -5,8 +5,30 @@
         <%= image_tag "https://media.giphy.com/media/Hzhkf0esHVMhW/giphy.gif" %>
         </div>
         <div id="bip" class="display"></div>
+        <%  @time = @arrtime.to_json %>
+        <script>
+          document.addEventListener('DOMContentLoaded', (event) => {
+           start();
+            });
+          var counter = 120;
+          var intervalId = null;
+          function finish() {
+            clearInterval(intervalId);
+            document.getElementById("bip").innerHTML = "Have a good one!";
+          }
+          function bip() {
+            counter--;
+            if(counter == 0) finish();
+            else {
+              document.getElementById("bip").innerHTML = counter + " seconds to get there";
+            }
+          }
+          function start(){
+            intervalId = setInterval(bip, 1000);
+          }
+        </script>
         <hr class="my-4">
-        <%= link_to 'Back to all toilets', toilets_path, :class => "btn btn-lg btn-primary"   %>
+        <%= link_to 'Back to the toilet', toilet_path(@booking.toilet), :class => "btn btn-lg btn-primary"   %>
       <hr class="my-4">
     </div>
 </div>

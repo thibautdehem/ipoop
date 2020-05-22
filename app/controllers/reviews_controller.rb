@@ -4,9 +4,9 @@ class ReviewsController < ApplicationController
     @toilet = Toilet.find(params[:toilet_id])
     @review.user = current_user
     authorize @review
-    @review.toilet_id = @toilet
-    if @review.save!
-      redirect_to toilet_path(@toilet)
+    @review.toilet = @toilet
+    if @review.save
+      redirect_to toilet_path(@toilet, anchor: "review-#{@review.id}")
     else
       render 'toilets/show'
     end
