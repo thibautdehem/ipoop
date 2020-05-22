@@ -19,7 +19,6 @@ class BookingsController < ApplicationController
 
     def show
         @booking = @toilet.bookings.new
-        @arrtime = @booking.arrivaltime[0].to_i
     end
 
 

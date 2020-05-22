@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
     authorize @review
     @review.toilet = @toilet
     if @review.save
-      redirect_to toilet_path(@toilet)
+      redirect_to toilet_path(@toilet, anchor: "review-#{@review.id}")
     else
       render 'toilets/show'
     end
